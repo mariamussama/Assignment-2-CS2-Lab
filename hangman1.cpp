@@ -1,6 +1,6 @@
 #include "hangman1.h"
 #include "ui_hangman1.h"
-
+int hangman1::count=0;
 hangman1::hangman1(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::hangman1)
@@ -255,7 +255,53 @@ void hangman1::checkLetter(QString letter)
         }
         CheckLetter[letter1 - 'A'] = 0;
         ui->label->setText(displayedWord);
-        //if (!flag)
-            //call graphics function
-    }
+        if (!flag)
+            {
+            shape();
+            inc();
+        }} //call graphics function
+}
+void hangman1::inc()
+{
+    count++;
+}
+int hangman1:: getcount()
+{
+    return count;
+}
+void hangman1::shape()
+{
+    QBrush RedBrush(Qt::red);
+    QPen Blackpen(Qt::black);
+    Blackpen.setWidth(6);
+    switch (count)
+    {
+    case 0:
+            ellipse = scene->addEllipse(-50, -50, 100, 100, Blackpen, RedBrush);
+        break;
+    case 1:
+                Line = scene->addLine(0, 55, 0, 250, Blackpen);
+    break;
+    case 2:
+                Line = scene->addLine(0, 100, 100, 150, Blackpen);
+                break;
+    case 3:
+    Line = scene->addLine(0, 100, -100, 150, Blackpen);
+    break;
+    case 4:
+    Line = scene->addLine(0, 250,-100, 300, Blackpen);
+        break;
+    case 5:
+    Line = scene->addLine(0, 250, 100, 300, Blackpen);
+        break;
+    case 6:
+    Line = scene->addLine(-200, -100, -200, 300, Blackpen);
+        break;
+    case 7:
+    Line = scene->addLine(-200, -100, 0, -100, Blackpen);
+        break;
+    case 8:
+    Line = scene->addLine(0, -100, 0, -50, Blackpen);
+        break;
+}
 }

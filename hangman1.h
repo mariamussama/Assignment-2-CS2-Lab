@@ -3,6 +3,12 @@
 
 #include <QMainWindow>
 #include <string>
+#include<QPainter>
+#include<QGraphicsItem>
+#include<QGraphicsScene>
+#include <QGraphicsRectItem>
+#include <QGraphicsEllipseItem>
+#include<QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class hangman1; }
@@ -14,6 +20,9 @@ class hangman1 : public QMainWindow
 
 public:
     hangman1(QWidget *parent = nullptr);
+    void inc();
+    int getcount();
+    void shape();
     ~hangman1();
 
 private slots:
@@ -79,5 +88,10 @@ private:
     std::string s_word;
     bool* CheckLetter = new bool[26];
     QString displayedWord;
+    QGraphicsScene* scene;
+    QGraphicsEllipseItem* ellipse;
+    QGraphicsLineItem* Line;
+    QGraphicsRectItem* rectangle;
+        static int count;
 };
 #endif // HANGMAN1_H
